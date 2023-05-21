@@ -1,6 +1,7 @@
 import './input.css';
 import {checkInputOnValidLengthAndNumberOnly, executeMethodWhenTargetInputValid} from './src/utils/textUtils.js';
 
+
 const processNumericInputWithLimit = (target, length, method, next) => {
     executeMethodWhenTargetInputValid(
       target, method, checkInputOnValidLengthAndNumberOnly, length) && !!next && next();
@@ -14,6 +15,7 @@ const findWorkItemVOById = (id) => invoiceVO.items.find((i) => i.id === id);
 const domTableWorkItems = DOM('tableWorkItems');
 const domWorkItem = domTableWorkItems.children[0];
 const domInputWorkItemQyt = DOM('inputWorkItemQty');
+// const domInvoiceResultView = DOM('resultsTotalContainer');
 // const popupWorkItem = new WorkItemPopup(DOM('popupWorkItemContainer'));
 
 console.log('> domWorkItem', domWorkItem);
@@ -107,6 +109,7 @@ domTableWorkItems.onclick = ({target}) => {
   console.log('> target', selectedWorkItemVO);
   // popupWorkItem.open(selectedWorkItemVO);
   openPopupWorkItem(selectedWorkItemVO);
+  InvoiceResultsView();
 };
 
 domInputWorkItemQyt.oninput = ({target}) => processNumericInputWithLimit(target, 3, (value) => {
